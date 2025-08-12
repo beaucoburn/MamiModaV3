@@ -2,7 +2,6 @@ import { test as base } from '@playwright/test'
 
 import { CartPage } from './cart-page'
 import { CategoryPage } from './category-page'
-import { CheckoutPage } from './checkout-page'
 import { OrderPage } from './order-page'
 import { ProductPage } from './product-page'
 import { StorePage } from './store-page'
@@ -10,7 +9,6 @@ import { StorePage } from './store-page'
 export const fixtures = base.extend<{
   cartPage: CartPage
   categoryPage: CategoryPage
-  checkoutPage: CheckoutPage
   orderPage: OrderPage
   productPage: ProductPage
   storePage: StorePage
@@ -26,10 +24,6 @@ export const fixtures = base.extend<{
   categoryPage: async ({ page }, use) => {
     const categoryPage = new CategoryPage(page)
     await use(categoryPage)
-  },
-  checkoutPage: async ({ page }, use) => {
-    const checkoutPage = new CheckoutPage(page)
-    await use(checkoutPage)
   },
   orderPage: async ({ page }, use) => {
     const orderPage = new OrderPage(page)
