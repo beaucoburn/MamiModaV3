@@ -1,6 +1,5 @@
 import { test as base } from '@playwright/test'
 
-import { resetDatabase } from '../../../data/reset'
 import { CartPage } from './cart-page'
 import { CategoryPage } from './category-page'
 import { CheckoutPage } from './checkout-page'
@@ -9,7 +8,6 @@ import { ProductPage } from './product-page'
 import { StorePage } from './store-page'
 
 export const fixtures = base.extend<{
-  resetDatabaseFixture: void
   cartPage: CartPage
   categoryPage: CategoryPage
   checkoutPage: CheckoutPage
@@ -21,13 +19,6 @@ export const fixtures = base.extend<{
     await page.goto('/')
     use(page)
   },
-  resetDatabaseFixture: [
-    async function ({}, use) {
-      await resetDatabase()
-      await use()
-    },
-    { auto: true, timeout: 10000 },
-  ],
   cartPage: async ({ page }, use) => {
     const cartPage = new CartPage(page)
     await use(cartPage)
